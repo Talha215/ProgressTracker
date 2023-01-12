@@ -1,7 +1,12 @@
 package tvShowTracker;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Scanner;
 
+import connections.ConnectionManager;
+   
 public class menu {
 	private static int userID;
 	
@@ -24,8 +29,8 @@ public class menu {
 		
 		userID = user.ID;
 		
-		input.close();
 		menu();
+		input.close();
 	}
 	
 	public static void menu() {
@@ -71,5 +76,15 @@ public class menu {
 		sc.close();
 	}
 
+	public static void removeShow(int showID) {
+		try (Connection conn = ConnectionManager.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM users WHERE login_id= ? and show_id= ? ");
+			pstmt.setInt(1, userID);
+			pstmt.setInt(2, showID);
+			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			System.out.println("Could not make connection.");
+		}
+	}
  
 }
