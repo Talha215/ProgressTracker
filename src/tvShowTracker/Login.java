@@ -24,11 +24,14 @@ public class Login {
 				String user = rs.getString("user_name");
 				String pass = rs.getString("passcode");
 				
-				if(user.equals(username) && pass.equals(password))
+				if(user.equals(username) && pass.equals(password)) {
 					ID = Integer.parseInt(id);
+					System.out.println("Successfully logged in!");
+				}
 			}
 			
 		} catch(SQLException e) {
+			e.printStackTrace();
 			System.out.println("Could not make connection.");
 		}
 	}
