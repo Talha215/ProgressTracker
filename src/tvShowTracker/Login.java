@@ -8,7 +8,7 @@ import java.sql.Statement;
 import connections.ConnectionManager;
 
 public class Login {
-	public static int ID = -1;
+	public int ID = -1;
 	
 	public Login() {
 		System.out.println("Error");

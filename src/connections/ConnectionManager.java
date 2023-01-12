@@ -24,19 +24,6 @@ public class ConnectionManager {
 		}
 		
 		return conn;
-	}
-		
-		// main is only here so we can test our method above
-//		public static void main(String[] args) {
-//			Connection conn = ConnectionManager.getConnection();
-//			
-//			try {
-//				conn.close();
-//				System.out.println("Connection closed."); 
-//				
-//			} catch(SQLException e) {
-//				System.out.println("Could not close connection.");
-//			}
-//		} 		
+	}	
 	
 }
