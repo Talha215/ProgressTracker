@@ -18,6 +18,7 @@ public class menu {
 		Login user = new Login(username, password);
 		if(user.ID < 0) {
 			System.out.println("Login not found.");
+			input.close();
 			return;
 		}
 		
