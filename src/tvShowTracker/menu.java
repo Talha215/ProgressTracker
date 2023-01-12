@@ -23,7 +23,6 @@ public class menu {
 				try {
 					System.out.println("Add Show");
 				}catch(Exception e) {
-					System.out.println("Invalid input");
 					e.printStackTrace();
 				}
 				break;
@@ -31,7 +30,6 @@ public class menu {
 				try {
 					System.out.println("View Progress");
 				}catch(Exception e) {
-					System.out.println("Invalid input");
 					e.printStackTrace();
 				}
 				break;
@@ -39,7 +37,6 @@ public class menu {
 				try {
 					System.out.println("Update");
 				}catch(Exception e) {
-					System.out.println("Invalid Input");
 					e.printStackTrace();
 				}
 					break;
