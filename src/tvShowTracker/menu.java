@@ -3,8 +3,28 @@ package tvShowTracker;
 import java.util.Scanner;
 
 public class menu {
+	private static int userID;
+	
 	public static void main(String[] args) {
-	menu();
+		Scanner input = new Scanner(System.in);
+		System.out.println("Please Login:");
+		
+		System.out.print("username: ");
+		String username = input.nextLine();
+		
+		System.out.print("password: ");
+		String password = input.nextLine();
+		
+		Login user = new Login(username, password);
+		if(user.ID < 0) {
+			System.out.println("Login not found.");
+			return;
+		}
+		
+		userID = user.ID;
+		
+		input.close();
+		menu();
 	}
 	
 	public static void menu() {
