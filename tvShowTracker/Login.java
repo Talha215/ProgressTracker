@@ -14,7 +14,7 @@ public class Login {
 		System.out.println("Error");
 	}
 	
-	public Login(String username, String password) {
+	public Login(String username, String password) throws InvalidLoginException {
 		try (Connection conn = ConnectionManager.getConnection()) {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT login_id, user_name, passcode FROM login");
@@ -28,6 +28,10 @@ public class Login {
 					ID = Integer.parseInt(id);
 					System.out.println("Successfully logged in!");
 				}
+			}
+			
+			if (ID == -1) {
+				throw new InvalidLoginException();
 			}
 			
 		} catch(SQLException e) {
