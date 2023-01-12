@@ -95,8 +95,8 @@ public class menu {
 				String status = rs.getString("show_status");
 				int progress = rs.getInt("progress");
 				
-				String entry = "Show ID: " + tvShowID + " Name:" + tvShowName + 
-						" Status: " + status + " Progress:" + progress;
+				String entry = "Tv Show - ID: " + tvShowID + ", Name: '" + tvShowName + "'," +
+						(status.equals("in-progress") ? "" : (" Progress: " + progress + "%"));
 				switch(status) {
 				case "not completed":
 					notCompleted.add(entry);
