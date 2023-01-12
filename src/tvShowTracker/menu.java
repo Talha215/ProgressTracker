@@ -12,26 +12,41 @@ public class menu {
 		System.out.println("\n 1.Add Show");
 		System.out.println("\n 2.View Progress");
 		System.out.println("\n 3.Update");
+
 		
 		Scanner sc = new Scanner(System.in);
 	
 		int option = sc.nextInt();
 		sc.nextLine();
-		
 		switch(option){
-			case 1: 
-				System.out.println("Add Show");
+			case 1:
+				try {
+					System.out.println("Add Show");
+				}catch(Exception e) {
+					System.out.println("Invalid input");
+					e.printStackTrace();
+				}
 				break;
 			case 2:
-				System.out.println("View Progress");
+				try {
+					System.out.println("View Progress");
+				}catch(Exception e) {
+					System.out.println("Invalid input");
+					e.printStackTrace();
+				}
 				break;
 			case 3:
-				System.out.println("Update");
-				break;
-			
-			
+				try {
+					System.out.println("Update");
+				}catch(Exception e) {
+					System.out.println("Invalid Input");
+					e.printStackTrace();
+				}
+					break;
+			default:
+				menu();
+	
 		}
-		
 		sc.close();
 	}
 
