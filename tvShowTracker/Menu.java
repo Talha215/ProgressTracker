@@ -37,30 +37,19 @@ public class Menu {
 	
 		int option = sc.nextInt();
 		sc.nextLine();
-		
+		sc.close();
+
 		System.out.println();
 		switch(option){
 			case 1:
-				try {
-					System.out.println("Add Show");
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
+				System.out.println("Add Show");
 				break;
 			case 2:
-				try {
-					Functions.viewProgress();
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
+				Functions.viewProgress();
 				break;
 			case 3:
-				try {
-					System.out.println("Update");
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
-					break;
+				System.out.println("Update");
+				break;
 			case 4:
 				try {
 					System.out.print("Enter the show ID to remove from your profile: ");
@@ -73,7 +62,6 @@ public class Menu {
 				break;
 			case 5:
 				System.out.println("Thank you for using the tracker. Goodbye!\n\n");
-				sc.close();
 				return;
 			default:
 				System.out.println("Invalid choice, try again.");
