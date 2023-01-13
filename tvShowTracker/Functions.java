@@ -94,11 +94,11 @@ public class Functions {
 		}
 	}
 
-	public static void removeShow(int showID) {
+	public static void removeShow(int tvShowID) {
 		try (Connection conn = ConnectionManager.getConnection()) {
-			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM users WHERE login_id= ? and show_id= ? ");
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM users WHERE login_id= ? and tvshows_id= ? ");
 			pstmt.setInt(1, userID);
-			pstmt.setInt(2, showID);
+			pstmt.setInt(2, tvShowID);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Could not make connection.");
@@ -113,8 +113,9 @@ public class Functions {
 		// APPROPIATE USER
 
 		try (Connection conn = ConnectionManager.getConnection()) {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE login_id = 1");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM users WHERE login_id = ?");
+			pstmt.setInt(1, userID);
+			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				String id = rs.getString("tvshows_id");
@@ -132,18 +133,18 @@ public class Functions {
 			System.out.println("Enter the current status: ");
 			String update = input.nextLine();
 
-			PreparedStatement pstmt = conn.prepareStatement("update users set show_status = ? where tvshows_id = ?");
-			pstmt.setString(1, update);
-			pstmt.setInt(2, theID);
+			PreparedStatement pstmt2 = conn.prepareStatement("update users set show_status = ? where tvshows_id = ?");
+			pstmt2.setString(1, update);
+			pstmt2.setInt(2, theID);
 
-			int run = pstmt.executeUpdate();
+			int run = pstmt2.executeUpdate();
 
 			// int update = stmt.executeUpdate("update users set show_status = \"not
 			// completed\" where users_id = 1");
 			// System.out.println("Row Updated");
 			// \"in-progress\"
 
-			input.close();
+//			input.close();
 
 		} catch (SQLException e) {
 			System.out.println("Could not make connection.");

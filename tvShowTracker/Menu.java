@@ -50,7 +50,6 @@ public class Menu {
 				break;
 			case 3:
 				Functions.change();
-				Functions.display();
 				break;
 			case 4: //ADD ERROR CHECKING
 				System.out.print("Enter the show ID to remove from your profile: ");
