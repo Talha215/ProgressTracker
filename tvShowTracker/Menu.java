@@ -48,9 +48,9 @@ public class Menu {
 			} catch(InvalidOptionException e2) {
 				System.out.println(e2.getMessage());
 				startMenu();
+				return;
 			}
 		}
-		
 
 		System.out.println();
 		switch (option) {
@@ -79,10 +79,7 @@ public class Menu {
 				System.out.println(e3.getMessage());
 			} finally {
 				startMenu();
-				sc.close();
-				sc = null;
 			}
-			return;
 		}
 
 		System.out.println("\n\n");
