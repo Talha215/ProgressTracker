@@ -38,31 +38,31 @@ public class menu {
 	}
 	
 	public static void menu() {
-		System.out.println("Welcome to the Tv show Data Tracker");
-		System.out.println("\n 1.Add Show");
-		System.out.println("\n 2.View Progress");
-		System.out.println("\n 3.Update");
-
+		System.out.println("Welcome to the TV Show Data Tracker");
+		System.out.println("1. Add Show");
+		System.out.println("2. View Progress");
+		System.out.println("3. Update Progress");
+		System.out.println("4. Delete Show");
+		System.out.println("5. Log Out");
+		System.out.print("Enter your choice: ");
 		
 		Scanner sc = new Scanner(System.in);
 	
 		int option = sc.nextInt();
 		sc.nextLine();
+		
 		switch(option){
 			case 1:
 				try {
 					System.out.println("Add Show");
 				}catch(Exception e) {
-					System.out.println("Invalid input");
 					e.printStackTrace();
 				}
 				break;
 			case 2:
 				try {
-					System.out.println("View Progress");
 					viewProgress();
 				}catch(Exception e) {
-					System.out.println("Invalid input");
 					e.printStackTrace();
 				}
 				break;
@@ -70,13 +70,26 @@ public class menu {
 				try {
 					System.out.println("Update");
 				}catch(Exception e) {
-					System.out.println("Invalid Input");
 					e.printStackTrace();
 				}
 					break;
+			case 4:
+				try {
+					System.out.print("Enter the show ID to remove from your profile: ");
+					int showID = Integer.parseInt(sc.nextLine());
+					removeShow(showID);
+				}catch(Exception e) {
+					System.out.println("Invalid input");
+					e.printStackTrace();
+				}
+				break;
+			case 5:
+				System.out.println("Thank you for using the tracker. Goodbye!\n\n");
+				sc.close();
+				return;
 			default:
+				System.out.println("Invalid choice, try again.");
 				menu();
-	
 		}
 		sc.close();
 	}
