@@ -14,8 +14,10 @@ public class Menu {
 		System.out.print("password: ");
 		String password = input.nextLine();
 		
-		if(!Functions.login(username, password)) {
-			System.out.println("Login not found.");
+		try {
+			Functions.login(username, password);
+		} catch(InvalidLoginException e) {
+			e.printStackTrace();
 			input.close();
 			return;
 		}

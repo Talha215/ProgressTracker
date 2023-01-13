@@ -11,7 +11,7 @@ import java.util.List;
 import connections.ConnectionManager;
 
 public class Functions {
-	private static int userID;
+	private static int userID = -1;
 
 	public static int getUserID() {
 		return userID;
@@ -22,7 +22,7 @@ public class Functions {
 	 * returns true if login is found, false if not found
 	 * sets userID if login was found (to be used with other methods)
 	 */
-	public static boolean login(String username, String password) {
+	public static void login(String username, String password) throws InvalidLoginException {
 		try (Connection conn = ConnectionManager.getConnection()) {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT login_id, user_name, passcode FROM login");
@@ -35,17 +35,15 @@ public class Functions {
 				if(user.equals(username) && pass.equals(password)) {
 					userID = Integer.parseInt(id);
 					System.out.println("Successfully logged in!");
-					return true;
 				}
-			}
-			return false;
-			
+			}		
 		} catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("Could not make connection.");
 		}
 		
-		return true;
+		if(userID < 0)
+			throw new InvalidLoginException();
 	}
 	
 	public static void viewProgress() {
