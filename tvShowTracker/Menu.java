@@ -43,35 +43,19 @@ public class Menu {
 		System.out.println();
 		switch(option){
 			case 1:
-				try {
-					System.out.println("Add Show");
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
+				System.out.println("Add Show");
 				break;
 			case 2:
-				try {
-					Functions.viewProgress();
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
+				Functions.viewProgress();
 				break;
 			case 3:
-				try {
-					System.out.println("Update");
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
-					break;
-			case 4:
-				try {
-					System.out.print("Enter the show ID to remove from your profile: ");
-					int showID = Integer.parseInt(sc.nextLine());
-					Functions.removeShow(showID);
-				}catch(Exception e) {
-					System.out.println("Invalid input");
-					e.printStackTrace();
-				}
+				Functions.change();
+				Functions.display();
+				break;
+			case 4: //ADD ERROR CHECKING
+				System.out.print("Enter the show ID to remove from your profile: ");
+				int showID = Integer.parseInt(sc.nextLine());
+				Functions.removeShow(showID);
 				break;
 			case 5:
 				System.out.println("Thank you for using the tracker. Goodbye!\n\n");
