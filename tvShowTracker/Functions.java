@@ -7,94 +7,46 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import connections.ConnectionManager;
 
-public class menu {
+public class Functions {
 	private static int userID;
+
+	public static int getUserID() {
+		return userID;
+	}
 	
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Please Login:");
-		
-		System.out.print("username: ");
-		String username = input.nextLine();
-		
-		System.out.print("password: ");
-		String password = input.nextLine();
-		
-		Login user;
-		try {
-			user = new Login(username, password);
-			userID = user.ID;
-		} catch (InvalidLoginException e) {
+	/**
+	 * checks the DB for username and password match
+	 * returns true if login is found, false if not found
+	 * sets userID if login was found (to be used with other methods)
+	 */
+	public static boolean login(String username, String password) {
+		try (Connection conn = ConnectionManager.getConnection()) {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT login_id, user_name, passcode FROM login");
+			
+			while(rs.next()) {
+				String id = rs.getString("login_id");
+				String user = rs.getString("user_name");
+				String pass = rs.getString("passcode");
+				
+				if(user.equals(username) && pass.equals(password)) {
+					userID = Integer.parseInt(id);
+					System.out.println("Successfully logged in!");
+					return true;
+				}
+			}
+			return false;
+			
+		} catch(SQLException e) {
 			e.printStackTrace();
-			input.close();
-			return;
+			System.out.println("Could not make connection.");
 		}
 		
-		input.close();
-		menu();
+		return true;
 	}
-	
-	public static void menu() {
-		System.out.println("Welcome to the TV Show Data Tracker");
-		System.out.println("1. Add Show");
-		System.out.println("2. View Progress");
-		System.out.println("3. Update Progress");
-		System.out.println("4. Delete Show");
-		System.out.println("5. Log Out");
-		System.out.print("Enter your choice: ");
-		
-		Scanner sc = new Scanner(System.in);
-	
-		int option = sc.nextInt();
-		sc.nextLine();
-		
-		switch(option){
-			case 1:
-				try {
-					System.out.println("Add Show");
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
-				break;
-			case 2:
-				try {
-					viewProgress();
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
-				break;
-			case 3:
-				try {
-					System.out.println("Update");
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
-					break;
-			case 4:
-				try {
-					System.out.print("Enter the show ID to remove from your profile: ");
-					int showID = Integer.parseInt(sc.nextLine());
-					removeShow(showID);
-				}catch(Exception e) {
-					System.out.println("Invalid input");
-					e.printStackTrace();
-				}
-				break;
-			case 5:
-				System.out.println("Thank you for using the tracker. Goodbye!\n\n");
-				sc.close();
-				return;
-			default:
-				System.out.println("Invalid choice, try again.");
-				menu();
-		}
-		sc.close();
-	}
-	
 	
 	public static void viewProgress() {
 		try (Connection conn = ConnectionManager.getConnection()) {
@@ -142,7 +94,7 @@ public class menu {
 			System.out.println("ViewProgress: Could not make connection.");
 		}
 	}
-
+	
 	public static void removeShow(int showID) {
 		try (Connection conn = ConnectionManager.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM users WHERE login_id= ? and show_id= ? ");
@@ -153,5 +105,4 @@ public class menu {
 			System.out.println("Could not make connection.");
 		}
 	}
- 
 }
