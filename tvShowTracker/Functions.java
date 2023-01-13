@@ -79,14 +79,17 @@ public class Functions {
 
 			System.out.println("Not Completed");
 			System.out.println("-------------");
+			System.out.println("Count: " + notCompleted.size());
 			notCompleted.forEach((entry) -> System.out.println(entry));
 
 			System.out.println("\nIn Progress");
 			System.out.println("-------------");
+			System.out.println("Count: " + inProgress.size());
 			inProgress.forEach((entry) -> System.out.println(entry));
 
 			System.out.println("\nCompleted");
 			System.out.println("-------------");
+			System.out.println("Count: " + completed.size());
 			completed.forEach((entry) -> System.out.println(entry));
 
 		} catch (SQLException e) {
@@ -185,11 +188,7 @@ public class Functions {
 			while(rs.next()) {
 		
 				tvshow_name = rs.getString("tvshow_name");
-		
-				
 			}
-		
-
 		
 			PreparedStatement pstmt1 = conn.prepareStatement("INSERT into users(tvshows_id, login_id, show_name, show_status, progress) values(?,?,?, 'not completed', 0 )");
 			

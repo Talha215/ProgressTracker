@@ -61,18 +61,25 @@ public class Menu {
 			sc.close();
 			return;
 		default:
-			sc.close();
-			sc = null;
-			System.out.println("Invalid choice, try again.");
-			startMenu();
+			try {
+				throw new InvalidOptionException();
+			} catch (InvalidOptionException e){
+				System.out.println(e.getMessage());
+			} finally {
+				sc.close();
+				sc = null;
+				startMenu();
+			}
+			return;
 		}
 
 		System.out.println("\n\n");
 		startMenu();
-
 		if (sc != null) {
 			sc.close();
 		}
+		
+		
 	}
 
 }
