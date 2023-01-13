@@ -12,7 +12,8 @@ import connections.ConnectionManager;
 public class changeProgress {
 	
 	public static void main(String[] args) {
-		change();
+//		change();
+//		display();
 	}
 	
 	public static void change() {
@@ -26,8 +27,7 @@ public class changeProgress {
 				ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE login_id = 1");
 				
 				while(rs.next()) {
-					String id = rs.getString("users_id");
-					String login = rs.getString("login_id");
+					String id = rs.getString("tvshows_id");
 					String showname = rs.getString("show_name");
 					String status = rs.getString("show_status");
 					
@@ -43,11 +43,12 @@ public class changeProgress {
 				String update = input.nextLine();
 				
 				
-				PreparedStatement pstmt = conn.prepareStatement("update users set show_status = ? where users_id = ?");
+				PreparedStatement pstmt = conn.prepareStatement("update users set show_status = ? where tvshows_id = ?");
 				pstmt.setString(1, update);
 				pstmt.setInt(2, theID);
 							
 				int run = pstmt.executeUpdate();
+				
 				
 				
 //				int update = stmt.executeUpdate("update users set show_status = \"not completed\" where users_id = 1");
@@ -61,7 +62,29 @@ public class changeProgress {
 				System.out.println("Could not make connection.");
 			}
 		}
+	
+	
+		public void display() {
+			
+			try (Connection conn = ConnectionManager.getConnection()) {
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM tvshows");
+				
+				while(rs.next()) {
+					String id = rs.getString("tvshows_id");
+					String name = rs.getString("tvshow_name");
+				
+					System.out.println("SHOW ID: " + id + " | Name: " + name);
+				}
+				
+			} catch(SQLException e) {
+				System.out.println("Could not make connection.");
+			}
+			
+		}
+	
 		
 	}
+
 
 
