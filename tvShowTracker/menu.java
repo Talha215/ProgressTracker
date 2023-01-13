@@ -24,17 +24,18 @@ public class menu {
 		System.out.print("password: ");
 		String password = input.nextLine();
 		
-		Login user = new Login(username, password);
-		if(user.ID < 0) {
-			System.out.println("Login not found.");
+		Login user;
+		try {
+			user = new Login(username, password);
+			userID = user.ID;
+		} catch (InvalidLoginException e) {
+			e.printStackTrace();
 			input.close();
 			return;
 		}
 		
-		userID = user.ID;
-		
-		menu();
 		input.close();
+		menu();
 	}
 	
 	public static void menu() {
