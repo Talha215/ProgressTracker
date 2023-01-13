@@ -41,7 +41,7 @@ insert into tvshows (tvshows_id, tvshow_name) values (null, 'Cheers');
 insert into tvshows (tvshows_id, tvshow_name) values (null, 'The Wire');
 insert into tvshows (tvshows_id, tvshow_name) values (null, 'The West Wing');
 
-insert into users (login_id, show_id, show_name, show_status, progress) values 
+insert into users (login_id, tvshows_id, show_name, show_status, progress) values 
 (1, 10, 'The West Wing', 'in-progress', 50);
 insert into users (login_id, tvshows_id, show_name, show_status, progress) values 
 (1, 2, 'Seinfield', 'not completed', 0);
