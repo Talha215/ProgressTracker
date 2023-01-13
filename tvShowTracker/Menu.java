@@ -43,7 +43,7 @@ public class Menu {
 		System.out.println();
 		switch (option) {
 		case 1:
-			System.out.println("Add Show");
+			Functions.addtvshow();
 			break;
 		case 2:
 			Functions.viewProgress();
