@@ -1,5 +1,6 @@
 package tvShowTracker;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -36,9 +37,20 @@ public class Menu {
 		System.out.print("Enter your choice: ");
 
 		Scanner sc = new Scanner(System.in);
-
-		int option = sc.nextInt();
-		sc.nextLine();
+		int option = 0;
+		
+		try{
+			option = sc.nextInt();
+			sc.nextLine();
+		} catch(InputMismatchException e) {
+			try {
+				throw new InvalidOptionException();
+			} catch(InvalidOptionException e2) {
+				System.out.println(e2.getMessage());
+				startMenu();
+			}
+		}
+		
 
 		System.out.println();
 		switch (option) {
@@ -63,12 +75,12 @@ public class Menu {
 		default:
 			try {
 				throw new InvalidOptionException();
-			} catch (InvalidOptionException e){
-				System.out.println(e.getMessage());
+			} catch (InvalidOptionException e3){
+				System.out.println(e3.getMessage());
 			} finally {
+				startMenu();
 				sc.close();
 				sc = null;
-				startMenu();
 			}
 			return;
 		}
