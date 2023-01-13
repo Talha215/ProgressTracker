@@ -51,7 +51,8 @@ public class Functions {
 	public static void viewProgress() {
 		try (Connection conn = ConnectionManager.getConnection()) {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT tvshows_id, show_name, show_status, progress FROM users");
+			ResultSet rs = stmt.executeQuery("SELECT tvshows_id, show_name, show_status, progress FROM users "
+					+ "where login_id = " + userID);
 			
 			List<String> notCompleted = new ArrayList<>();
 			List<String> inProgress = new ArrayList<>();
@@ -63,8 +64,8 @@ public class Functions {
 				String status = rs.getString("show_status");
 				int progress = rs.getInt("progress");
 				
-				String entry = "Tv Show - ID: " + tvShowID + ", Name: '" + tvShowName + "'," +
-						(status.equals("in-progress") ? "" : (" Progress: " + progress + "%"));
+				String entry = "Tv Show - ID: " + tvShowID + ", Name: '" + tvShowName + "'" +
+						(status.equals("in-progress") ? "" : (", Progress: " + progress + "%"));
 				switch(status) {
 				case "not completed":
 					notCompleted.add(entry);

@@ -37,8 +37,7 @@ public class Menu {
 	
 		int option = sc.nextInt();
 		sc.nextLine();
-		sc.close();
-
+		
 		System.out.println();
 		switch(option){
 			case 1:
@@ -62,13 +61,21 @@ public class Menu {
 				break;
 			case 5:
 				System.out.println("Thank you for using the tracker. Goodbye!\n\n");
+				sc.close();
 				return;
 			default:
+				sc.close();
+				sc = null;
 				System.out.println("Invalid choice, try again.");
 				startMenu();
 		}
+		
+		
 		System.out.println("\n\n");
 		startMenu();
+		if (sc != null) {
+			sc.close();
+		}
 	}
 	
 }
