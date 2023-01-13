@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path=""/>
+<<<<<<< HEAD
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+=======
 	<classpathentry kind="lib" path="C:/Java_Workspace/Jars/mysql-connector-j-8.0.31.jar">
+>>>>>>> 236a96a8ba4c395352d3fd881123c52db9d413ed
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+	<classpathentry kind="lib" path="C:/Users/elibu/Desktop/jars/mysql-connector-j-8.0.31.jar">
+=======
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+>>>>>>> 236a96a8ba4c395352d3fd881123c52db9d413ed
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
