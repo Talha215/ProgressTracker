@@ -63,7 +63,7 @@ public class Functions {
 				int progress = rs.getInt("progress");
 
 				String entry = "Tv Show - ID: " + tvShowID + ", Name: '" + tvShowName + "'"
-						+ (status.equals("in-progress") ? "" : (", Progress: " + progress + "%"));
+						+ (", Progress: " + progress + "%");
 				switch (status) {
 				case "not completed":
 					notCompleted.add(entry);
