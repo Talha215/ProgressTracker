@@ -18,8 +18,7 @@ PRIMARY KEY (login_id)
 CREATE TABLE users (
 users_id INT auto_increment,
 tvshows_id INT,
-login_id INT,
-show_id INT, 
+login_id INT, 
 show_name VARCHAR(30),
 show_status VARCHAR(20),
 progress INT,
