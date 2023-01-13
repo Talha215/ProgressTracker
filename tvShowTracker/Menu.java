@@ -81,6 +81,7 @@ public class Menu {
 		}
 		System.out.println("\n\n");
 		startMenu();
+		sc.close();
 	}
 	
 }
