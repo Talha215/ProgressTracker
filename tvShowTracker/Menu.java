@@ -37,7 +37,7 @@ public class Menu {
 		System.out.print("Enter your choice: ");
 
 		Scanner sc = new Scanner(System.in);
-		int option = 0;
+		int option = 5;
 		
 		try{
 			option = sc.nextInt();
@@ -64,6 +64,7 @@ public class Menu {
 			Functions.change();
 			break;
 		case 4: // ADD ERROR CHECKING
+			Functions.display();
 			System.out.print("Enter the show ID to remove from your profile: ");
 			int showID = Integer.parseInt(sc.nextLine());
 			Functions.removeShow(showID);
@@ -80,6 +81,7 @@ public class Menu {
 			} finally {
 				startMenu();
 			}
+			return;
 		}
 
 		System.out.println("\n\n");

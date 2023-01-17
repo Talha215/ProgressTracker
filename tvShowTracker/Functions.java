@@ -62,8 +62,8 @@ public class Functions {
 				String status = rs.getString("show_status");
 				int progress = rs.getInt("progress");
 
-				String entry = "Tv Show - ID: " + tvShowID + ", Name: '" + tvShowName + "'"
-						+ (", Progress: " + progress + "%");
+				String entry = "Tv Show - ID: " + tvShowID + ", Name: '" + tvShowName + "'";
+						//+ (", Progress: " + progress + "%");
 				switch (status) {
 				case "not completed":
 					notCompleted.add(entry);
@@ -97,7 +97,7 @@ public class Functions {
 		}
 	}
 
-	public static void removeShow(int tvShowID) {
+	public static void removeShow(int tvShowID) {		
 		try (Connection conn = ConnectionManager.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM users WHERE login_id= ? and tvshows_id= ? ");
 			pstmt.setInt(1, userID);
